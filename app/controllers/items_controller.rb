@@ -16,7 +16,6 @@ class ItemsController < ApplicationController
     def create
         @item = Item.new(item_params)
         if @item.save
-            binding.pry
           redirect_to item_path(@item)
         else
           render :new

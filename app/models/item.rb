@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
     has_many :drinks
-    #accepts_nested_attributes_for :drinks
+    # accepts_nested_attributes_for :drinks
 
     before_validation :make_title_case
     validates :name, presence: true, uniqueness: true

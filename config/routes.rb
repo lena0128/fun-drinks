@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get '/', to: "welcome#home"
+
   resources :drinks, except: [:edit, :update]
   resources :items
   
