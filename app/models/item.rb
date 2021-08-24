@@ -9,7 +9,7 @@ class Item < ApplicationRecord
 
     def is_title_case
         if self.name != self.name.titlecase
-            self.errors.add(:name, "must be capitalized!")
+            self.errors.add(:name, "must be titlecase!")
         end
     end
 
