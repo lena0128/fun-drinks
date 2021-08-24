@@ -5,9 +5,24 @@
 <h4>Alcohol: <%= @item.alcohol %></h4>
 <br><br>
 <p><%= @item.description %></p>
-
+<br><br>
 <button><%= link_to "Edit Item", edit_item_path(@item) %></button>
 
 <%= button_to "Delete Item", @item, method: :delete, data: { confirm: "Do you really want to delete this item?" } %>
 
+<br><br>
+<div class="row">
+<% @item.drinks.each do |d| %>
+  <div class="col-sm">
+    <div class="card" id="drink-gallery" style="width: 15rem;">
+      <img class="card-img-top" src="<%= d.drink_thumb %>" alt="Card image cap">
+      <div class="card-body" style="backgroud-color: grey">
+        <h5 class="card-title"><%= link_to d.drink_name, drink_path(d) %></h5>
+      </div><br>
+    </div>
 </div>
+<%end%>
+</div>
+
+</div>
+

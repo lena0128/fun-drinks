@@ -11,7 +11,7 @@ class Drink < ApplicationRecord
 
     def is_title_case
         if self.drink_name != drink_name.titlecase
-            self.errors.add(:drink_name, "must be capitalized!")
+            self.errors.add(:drink_name, "must be titlecase!")
         end
     end
 end

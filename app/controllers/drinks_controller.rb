@@ -6,6 +6,7 @@ class DrinksController < ApplicationController
 
     def new
         @drink = Drink.new
+        @items = Item.all
     end
 
     def show
@@ -13,6 +14,12 @@ class DrinksController < ApplicationController
     end
 
     def create
+        @drink = Drink.new(drink_params)
+        if @drink.save
+            redirect_to drink_path(@drink)
+        else
+            render :new
+        end
     end
 
     def edit
@@ -24,6 +31,8 @@ class DrinksController < ApplicationController
 
     def destroy
         @drink = Drink.find_by(id: params[:id])
+        @drink.delete
+        redirect_to drinks_path
     end
 
     private
