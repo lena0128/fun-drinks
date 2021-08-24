@@ -1,7 +1,11 @@
 class DrinksController < ApplicationController
 
     def index
-        @drinks = Drink.all
+        if params[:name]
+            @drinks = Drink.drink_search(params[:name])
+        else
+          @drinks = Drink.all
+        end
     end
 
     def new

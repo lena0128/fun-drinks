@@ -6,6 +6,8 @@ class Item < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     validates_presence_of :description, :alcohol
     validate :is_title_case
+
+    scope :item_search, ->(name) { where("name LIKE ?", "%#{name.titlecase}%") }
     
     def drinks_attributes=(drinks_attributes)
         drinks_attributes.values.each do |drink_attribute|

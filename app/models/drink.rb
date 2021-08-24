@@ -6,6 +6,8 @@ class Drink < ApplicationRecord
     validates :drink_thumb, presence: true
     validate :is_title_case
     
+    scope :drink_search, ->(name) { where("drink_name LIKE ?", "%#{name.titlecase}%") }
+
     def make_title_case
         self.drink_name = drink_name.titlecase
     end
@@ -15,4 +17,5 @@ class Drink < ApplicationRecord
             self.errors.add(:drink_name, "must be titlecase!")
         end
     end
+
 end
