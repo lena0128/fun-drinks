@@ -3,6 +3,7 @@ class Drink < ApplicationRecord
     
     before_validation :make_title_case
     validates :drink_name, presence: true, uniqueness: true
+    validates :drink_thumb, presence: true
     validate :is_title_case
     
     def make_title_case

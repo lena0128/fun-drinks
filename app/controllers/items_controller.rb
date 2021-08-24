@@ -10,11 +10,13 @@ class ItemsController < ApplicationController
 
     def new
         @item = Item.new
+        @item.drinks.build
     end
     
     def create
         @item = Item.new(item_params)
         if @item.save
+            binding.pry
           redirect_to item_path(@item)
         else
           render :new
@@ -47,7 +49,8 @@ class ItemsController < ApplicationController
               :name,
               :image_url,
               :description,
-              :alcohol
+              :alcohol, 
+              drinks_attributes: [:drink_name, :drink_thumb]
           )
       end
 

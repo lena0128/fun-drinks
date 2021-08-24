@@ -1,0 +1,17 @@
+<div class="form">
+  <%= form_for @drink do |f| %>
+
+   <%= f.label "Name:" %><br>
+   <%= f.text_field :drink_name %>
+   <br><br> 
+
+   <%= f.label "Submit an image url: " %><br>
+   <%= f.text_field :drink_thumb %>
+   <br><br>
+
+   <%= f.label "Select a main ingredient:" %>
+   <%= f.collection_select :item_id, @items, :id, :name, prompt: true %>
+   <br><br>
+   <%= f.submit %>
+   <%end%>
+</div>

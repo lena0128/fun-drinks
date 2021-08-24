@@ -16,6 +16,16 @@
    <%= f.label "Is this Alcohol? (yes / no)" %><br>
    <%= f.text_field :alcohol %>
    <br><br>
+
+   <%= f.label "Create a drink with this ingredient: " %><br>
+     <%= f.fields_for :drinks do |d| %>
+       <%= d.label "Drink Name:"%>
+       <%= d.text_field :drink_name %>
+      <br>
+        <%= d.label "Submit an image url:" %>
+        <%= d.text_field :drink_thumb %>
+      <%end%>
+      <br><br>  
    
    <%= f.submit %>
    <br><br>

@@ -22,13 +22,6 @@ class DrinksController < ApplicationController
         end
     end
 
-    def edit
-        @drink = Drink.find_by(id: params[:id])
-    end
-
-    def update
-    end
-
     def destroy
         @drink = Drink.find_by(id: params[:id])
         @drink.delete
