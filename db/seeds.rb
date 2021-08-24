@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'rest-client'
+
 Item.create([
     {name: "Rum",
     image_url: "https://www.thecocktaildb.com/images/ingredients/Rum.png", 
@@ -32,3 +34,49 @@ Item.create([
 }
 ])
 
+rm_1 = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Rum"
+rm_1_array = JSON.parse(rm_1)["drinks"]
+
+rm_1_array.each do |drink|
+    Drink.create(
+    drink_name: drink["strDrink"],
+    drink_thumb: drink["strDrinkThumb"],
+    item_id: 1
+    )
+end
+
+
+rm_2 = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Vodka"
+rm_2_array = JSON.parse(rm_2)["drinks"]
+
+rm_2_array.each do |drink|
+    Drink.create(
+    drink_name: drink["strDrink"],
+    drink_thumb: drink["strDrinkThumb"],
+    item_id: 2
+    )
+end
+
+
+rm_3 = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
+rm_3_array = JSON.parse(rm_3)["drinks"]
+
+rm_3_array.each do |drink|
+    Drink.create(
+    drink_name: drink["strDrink"],
+    drink_thumb: drink["strDrinkThumb"],
+    item_id: 3
+    )
+end
+
+
+rm_4 = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Tequila"
+rm_4_array = JSON.parse(rm_4)["drinks"]
+
+rm_4_array.each do |drink|
+    Drink.create(
+    drink_name: drink["strDrink"],
+    drink_thumb: drink["strDrinkThumb"],
+    item_id: 4
+    )
+end
