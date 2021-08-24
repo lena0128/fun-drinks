@@ -17,3 +17,30 @@
  * {
     box-sizing: border-box;
   }
+
+  .container h3 {
+    padding: 1rem;
+    text-align: center; 
+    color:#59AFBA;
+  }
+
+  .form {
+    display: block;
+    padding: 1.5rem;
+    width: 100%; 
+    border: 4px;
+    background-color:#59AFBA;
+    color: white;
+  }
+
+  .fields_with_errors {
+    padding-left: 3rem;
+    padding-top: 3rem;
+    text-align: left;
+    color: red;
+    font-weight: bold;
+  }
+  .field_with_errors input {
+    border-color: red;
+  }
+

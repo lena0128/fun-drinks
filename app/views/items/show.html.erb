@@ -1,0 +1,13 @@
+<div class="container">
+
+<h3><%= @item.name %></h3><br>
+<img src="<%= @item.image_url %>" alt="item image" width="30%">
+<h4>Alcohol: <%= @item.alcohol %></h4>
+<br><br>
+<p><%= @item.description %></p>
+
+<button><%= link_to "Edit Item", edit_item_path(@item) %></button>
+
+<%= button_to "Delete Item", @item, method: :delete, data: { confirm: "Do you really want to delete this item?" } %>
+
+</div>
