@@ -1,5 +1,6 @@
 <div class="form">
-  <%= form_for @drink do |f| %>
+
+  <%= form_for(@drink, url: form_url_helper(@item)) do |f| %>
 
    <%= f.label "Name:" %><br>
    <%= f.text_field :drink_name %>
@@ -9,9 +10,12 @@
    <%= f.text_field :drink_thumb %>
    <br><br>
 
+   <%if !@item %>
    <%= f.label "Select a main ingredient:" %>
-   <%= f.collection_select :item_id, @items, :id, :name, prompt: true %>
+   <%= f.collection_select :item_id, Item.all, :id, :name, prompt: true %>
+   <%end%>
+
    <br><br>
-   <%= f.submit %>
+   <%= f.submit "Save" %>
    <%end%>
 </div>

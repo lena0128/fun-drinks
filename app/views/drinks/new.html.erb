@@ -1,7 +1,11 @@
 <%= render partial: 'application/errors', locals: { errors: @drink.errors.full_messages } %> 
 
 <div class="container">
-<h3>Create a New Drink</h3>
+<%if @item %>
+  <h3>Create a New Drink with <%= @item.name %></h3>
+<%else%>
+  <h3>Create a New Drink</h3>
+<%end%>  
 
 <%= render 'form' %>
 

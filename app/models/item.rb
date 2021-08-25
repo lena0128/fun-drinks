@@ -1,10 +1,12 @@
 class Item < ApplicationRecord
     has_many :drinks
+    has_many :users, through: :drinks
     # accepts_nested_attributes_for :drinks
 
     before_validation :make_title_case
     validates :name, presence: true, uniqueness: true
-    validates_presence_of :description, :alcohol
+    validates :alcohol, presence: true, inclusion: { in: %w(yes no), message: "must be yes or no" }
+    validates :description, presence: true, length: { minimum: 5 }
     validate :is_title_case
 
     scope :item_search, ->(name) { where("name LIKE ?", "%#{name.titlecase}%") }

@@ -1,0 +1,9 @@
+<div class="container">
+<h3>Welcome back, <%= @user.username %>!</h3>
+
+
+<%= render partial: "items/items", locals: { items: @user.items.uniq } %>
+
+<%= render partial: "drinks/drinks", locals: { drinks: @user.drinks } %>
+
+</div>

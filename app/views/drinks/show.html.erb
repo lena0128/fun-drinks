@@ -1,9 +1,14 @@
 <div class="container" id="drink_page">
 
 <h3><%= @drink.drink_name %></h3><br>
+
 <img src="<%= @drink.drink_thumb %>" alt="drink image" width="50%">
+
 <br><br>
+
 <%= button_to "Delete Drink", @drink, method: :delete, data: { confirm: "Do you really want to delete this item?" } %>
+
 <br><br>
+
 </div>
 

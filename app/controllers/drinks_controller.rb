@@ -1,4 +1,5 @@
 class DrinksController < ApplicationController
+    before_action :set_drink, only: [:show, :destroy]
 
     def index
         if params[:name]
@@ -9,25 +10,31 @@ class DrinksController < ApplicationController
     end
 
     def new
-        @drink = Drink.new
-        @items = Item.all
-    end
-
-    def show
-        @drink = Drink.find_by(id: params[:id])
-    end
-
-    def create
-        @drink = Drink.new(drink_params)
-        if @drink.save
-            redirect_to drink_path(@drink)
+        # by checking if there is an item_id in the params hash, we can know which item we are associated with
+        if params[:item_id]
+            @item = Item.find_by(id: params[:item_id])
+            # by calling #build method, the new drink object will authomatically have an associated item_id 
+            @drink = @item.drinks.build
         else
-            render :new
+            @drink = Drink.new
+            @items = Item.all
         end
     end
 
+    def show
+    end
+
+    def create
+        @drink = Drink.create(drink_params)
+        @drink.user = current_user
+        if params[:item_id]
+            @drink.item_id = params[:item_id]
+        end
+            @drink.save
+            redirect_to drinks_path
+    end
+
     def destroy
-        @drink = Drink.find_by(id: params[:id])
         @drink.delete
         redirect_to drinks_path
     end
@@ -35,6 +42,10 @@ class DrinksController < ApplicationController
     private
     def drink_params
         params.require(:drink).permit(:drink_name, :drink_thumb, :item_id)
+    end
+
+    def set_drink
+        @drink = Drink.find_by(id: params[:id])
     end
 
 end

@@ -8,6 +8,8 @@
 
 require 'rest-client'
 
+User.create([{username: "Joyce13", email: "joyce13@email.com", password: "password13" }, {username: "eric2", email: "eric2@email.com", password: "passwrod2" }])
+
 Item.create([
     {name: "Rum",
     image_url: "https://www.thecocktaildb.com/images/ingredients/Rum.png", 
@@ -41,7 +43,8 @@ rm_1_array.each do |drink|
     Drink.create(
     drink_name: drink["strDrink"],
     drink_thumb: drink["strDrinkThumb"],
-    item_id: 1
+    item_id: 1,
+    user_id: 2
     )
 end
 
@@ -53,7 +56,8 @@ rm_2_array.each do |drink|
     Drink.create(
     drink_name: drink["strDrink"],
     drink_thumb: drink["strDrinkThumb"],
-    item_id: 2
+    item_id: 2, 
+    user_id: 1 
     )
 end
 
@@ -65,7 +69,8 @@ rm_3_array.each do |drink|
     Drink.create(
     drink_name: drink["strDrink"],
     drink_thumb: drink["strDrinkThumb"],
-    item_id: 3
+    item_id: 3,
+    user_id: 3
     )
 end
 
@@ -77,6 +82,7 @@ rm_4_array.each do |drink|
     Drink.create(
     drink_name: drink["strDrink"],
     drink_thumb: drink["strDrinkThumb"],
-    item_id: 4
+    item_id: 4,
+    user_id: 1
     )
 end

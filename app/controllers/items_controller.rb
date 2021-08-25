@@ -1,21 +1,25 @@
 class ItemsController < ApplicationController
+    before_action :set_item, only: [:show, :edit, :update, :destroy]
 
     def index
-        if params[:name]
+        if params[:user_id]
+           @user = User.find_by(id: params[:user_id])
+           @items = @user.items.uniq
+        elsif params[:name]
             @items = Item.item_search(params[:name])
         else
         @items = Item.all
         end
     end
 
-    def show
-        @item = Item.find_by(id: params[:id])
-    end
-
     def new
         @item = Item.new
         @item.drinks.build
     end
+    
+    def show
+    end
+
     
     def create
         @item = Item.new(item_params)
@@ -27,11 +31,9 @@ class ItemsController < ApplicationController
     end
 
     def edit
-        @item = Item.find_by(id: params[:id])
     end
 
     def update
-        @item = Item.find_by(id: params[:id])
         if @item.update(item_params)
             redirect_to item_path(@item)
         else
@@ -40,7 +42,6 @@ class ItemsController < ApplicationController
     end
 
     def destroy
-        @item = Item.find_by(id: params[:id])
         @item.delete
         redirect_to items_path
     end
@@ -55,6 +56,10 @@ class ItemsController < ApplicationController
               :alcohol, 
               drinks_attributes: [:drink_name, :drink_thumb]
           )
+      end
+
+      def set_item
+        @item = Item.find_by(id: params[:id])
       end
 
 end

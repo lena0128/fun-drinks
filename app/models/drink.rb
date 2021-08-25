@@ -1,5 +1,6 @@
 class Drink < ApplicationRecord
     belongs_to :item
+    belongs_to :user
     
     before_validation :make_title_case
     validates :drink_name, presence: true, uniqueness: true
