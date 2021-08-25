@@ -1,6 +1,8 @@
 <div class="container">
-<h3>Welcome back, <%= @user.username %>!</h3>
 
+<p class="flash"><%= flash[:message] %></p>
+
+<h3>Welcome back, <%= @user.username %>!</h3>
 
 <%= render partial: "items/items", locals: { items: @user.items.uniq } %>
 

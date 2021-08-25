@@ -19,10 +19,27 @@ class SessionsController < ApplicationController
         end
     end
 
+    def omniauth
+        @user = User.create_from_omniauth(auth)
+        if @user.valid?
+            session[:user_id] = @user.id
+            flash[:message] = "You are successfully logged in!"
+            redirect_to user_path(@user)
+        else
+            redirect_to home_path
+        end
+    end
+
     def destroy
         session.clear
         flash[:message] = "You are successfully logged out!"
         redirect_to signup_path
     end
+
+    private
+    def auth
+        request.env['omniauth.auth']
+    end
+
     
 end

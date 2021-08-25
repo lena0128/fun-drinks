@@ -1,5 +1,7 @@
 <%=render partial: "application/errors", locals: {errors: @errors} %>
 
+<p class="flash"><%= flash[:message] %></p>
+
 <div class="form">
   <%= form_for :user do |f| %>
     <%= f.label "Username:" %><br>
