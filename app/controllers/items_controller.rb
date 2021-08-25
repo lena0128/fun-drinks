@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
     before_action :set_item, only: [:show, :edit, :update, :destroy]
+    before_action :require_login, except: [:index, :show]
 
     def index
         if params[:user_id]
