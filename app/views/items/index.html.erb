@@ -15,7 +15,7 @@
     <%end%> 
    <%end%>
   </div>  
-
+     
 <%else%>
   <h3>All Ingredients</h3>
 
@@ -23,8 +23,8 @@
         <%= f.text_field :name %>
         <%= f.submit "Search Ingredient" %>
     <%end%>
-    
-  <%= render partial: 'items', locals: {items: @items} %>  
+  
+  <%= render partial: 'items', locals: {items: @items} %>
 
 <% end %>
 

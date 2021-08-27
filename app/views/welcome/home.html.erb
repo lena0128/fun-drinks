@@ -28,12 +28,26 @@
 
 <div class="container">
 <h3>Welcome to Fun Drinks!</h3>
-<h4>Check our lasest drinks!</h4>
-<%= @item.name %>
-<br>
-<h4>Check our poplular ingredients!<h4>
-<%= >
-</div>
+ 
+  <h5>Lasest Alcoholic Drinks</h5>
+  <%= render partial: "drinks/drinks", locals: {drinks: @alc_drinks} %>
+  <br><br>
+  <h5>Lasest Non-Alcoholic Drinks</h5>
+  <%= render partial: "drinks/drinks", locals: {drinks: @non_alc_drinks} %>
+  <br><br>
+  <h5>Alcoholic Ingredients</h5>
+  <%= render partial: "items/items", locals: {items: @alc_items} %>
+  <br><br>
+  <br><br>
+  <h5>Non-Alcoholic Ingredients</h5>
+  <%= render partial: "items/items", locals: {items: @non_alc_items} %>
+  <br><br>
+
+
+
+
+
+</div>  
 
 
 

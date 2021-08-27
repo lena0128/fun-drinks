@@ -8,6 +8,8 @@ class Drink < ApplicationRecord
     validate :is_title_case
     
     scope :drink_search, ->(name) { where("drink_name LIKE ?", "%#{name.titlecase}%") }
+    scope :alcohol_drink_filter, -> { Drink.joins(:item). where(item: {alcohol: "yes"}).last(3) }
+    scope :non_alcohol_drink_filter, -> { Drink.joins(:item). where(item: {alcohol: "no"}).last(3) }
 
     def make_title_case
         self.drink_name = drink_name.titlecase

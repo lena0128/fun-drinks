@@ -8,8 +8,8 @@ class ItemsController < ApplicationController
            @items = @user.items
         elsif params[:name]
             @items = Item.item_search(params[:name])
-        else
-        @items = Item.all
+          else
+            @items = Item.all
         end
     end
 

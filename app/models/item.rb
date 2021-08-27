@@ -9,8 +9,10 @@ class Item < ApplicationRecord
     validates :description, presence: true, length: { minimum: 5 }
     validate :is_title_case
 
-    scope :item_search, ->(name) { where("name LIKE ?", "%#{name.titlecase}%") }
-    scope :filter_alcohol, ->(alcohol) { where("alcohol = yes", alcohol) }
+    scope :item_search, ->(name) { where("name LIKE ?", "%#{name.titlecase}%") } 
+    scope :filter_alcohol, -> { where(alcohol: "yes").last(3) } 
+    scope :filter_non_alcohol, -> { where(alcohol: "no").last(3) }
+
     
     def drinks_attributes=(drinks_attributes)
         drinks_attributes.values.each do |hash|
@@ -33,5 +35,4 @@ class Item < ApplicationRecord
     def make_title_case
         self.name = name.titlecase
     end
-
 end
