@@ -18,13 +18,17 @@
    <%= f.text_field :alcohol %>
    <br><br>
 
-   <%= f.label "Create a drink with this ingredient: " %><br>
+   <%= f.label "Drink with this ingredient: " %><br>
      <%= f.fields_for :drinks, @drinks do |d| %>
        <%= d.label "Drink Name:"%>
        <%= d.text_field :drink_name %>
       <br>
         <%= d.label "Submit an image url:" %>
         <%= d.text_field :drink_thumb %>
+        <br>
+        <%= d.label "Recipe: " %><br>
+        <%= d.text_area :recipe, cols: 30, rows: 10 %>
+        <br>
       <%end%>
       <br><br>  
    

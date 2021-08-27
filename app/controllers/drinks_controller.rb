@@ -1,7 +1,7 @@
 class DrinksController < ApplicationController
     before_action :set_drink, only: [:show, :edit, :update, :destroy]
     before_action :require_login
-    before_action :require_creator, only: [:destroy]
+    before_action :require_creator, only: [:edit, :update, :destroy]
 
     def index
         if params[:name]
@@ -17,6 +17,7 @@ class DrinksController < ApplicationController
             @item = Item.find_by(id: params[:item_id])
             # by calling #build method, the new drink object will authomatically have an associated item_id 
             @drink = @item.drinks.build
+            @items = Item.all
         else
             @drink = Drink.new
             @items = Item.all
@@ -45,7 +46,12 @@ class DrinksController < ApplicationController
     end
 
     def update
-            
+         if @drink.update(drink_params)
+            flash[:message] = "Your drink has been successfully updated!"
+            redirect_to drink_path(@drink)
+         else
+            render :edit
+         end
     end
 
     def destroy
@@ -56,7 +62,7 @@ class DrinksController < ApplicationController
 
     private
     def drink_params
-        params.require(:drink).permit(:drink_name, :drink_thumb, :item_id)
+        params.require(:drink).permit(:drink_name, :drink_thumb, :recipe, :item_id)
     end
 
     def set_drink

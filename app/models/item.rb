@@ -10,13 +10,19 @@ class Item < ApplicationRecord
     validate :is_title_case
 
     scope :item_search, ->(name) { where("name LIKE ?", "%#{name.titlecase}%") }
+    scope :filter_alcohol, ->(alcohol) { where("alcohol = yes", alcohol) }
     
     def drinks_attributes=(drinks_attributes)
-        drinks_attributes.values.each do |drink_attribute|
-          drink = Drink.find_or_create_by(drink_attribute)
+        drinks_attributes.values.each do |hash|
+            if hash[:id]
+                drink = Drink.find_by(id: hash[:id])
+                drink.update(hash)
+            else
+          drink = Drink.find_or_create_by(hash)
           self.drinks << drink
         end
       end
+    end
 
     def is_title_case
         if self.name != self.name.titlecase
@@ -27,4 +33,5 @@ class Item < ApplicationRecord
     def make_title_case
         self.name = name.titlecase
     end
+
 end

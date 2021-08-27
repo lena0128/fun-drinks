@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-    before_action :set_item, only: [:show, :edit, :update, :destroy]
+    before_action :set_item, only: [:show, :edit, :update]
     before_action :require_login
 
     def index
@@ -22,20 +22,22 @@ class ItemsController < ApplicationController
     def show
     end
 
+    def edit
+      @drinks = @item.drinks.select { |d|d.user_id == current_user.id }
+    end
     
     def create
         @item = Item.new(item_params)
-        @item.drinks.each { |d| d.user = current_user }
+        @item.drinks.each { |d|d.user_id = current_user.id }
         if @item.save
           flash[:message] = "New drink has been successfully created!"
           redirect_to item_path(@item)
         else
+          @item.drinks.select { |d| d.user_id = current_user.id }
           render :new
         end
     end
 
-    def edit
-    end
 
     def update
       if @item.update(item_params)
@@ -46,17 +48,18 @@ class ItemsController < ApplicationController
       end
     end
 
-    private
+private
 
-      def item_params
-          params.require(:item).permit(
-              :name,
-              :image_url,
-              :description,
-              :alcohol, 
-              drinks_attributes: [:drink_name, :drink_thumb, :user_id, :id]
-          )
-      end
+    def item_params
+      params.require(:item).permit(
+          :name,
+          :image_url,
+          :description,
+          :alcohol, 
+          drinks_attributes: [:drink_name, :drink_thumb, :recipe, :user_id, :id]
+      )
+  end
+
 
       def set_item
         @item = Item.find_by(id: params[:id])

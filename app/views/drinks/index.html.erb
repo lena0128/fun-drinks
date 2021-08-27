@@ -4,11 +4,11 @@
 
 <h3>All Drinks</h3>
 
-<%= form_tag drinks_path, method: :get do %>
-    <%= text_field_tag :name %>
-    <%= submit_tag "Search Drink" %>
+<%= form_with url: drinks_path, method: :get do |f| %>
+    <%= f.text_field :name %>
+    <%= f.submit "Search Drink" %>
 <%end%> 
 
 <%= render partial: 'drinks', locals: {drinks: @drinks} %>
 
-</div>    
+</div> 

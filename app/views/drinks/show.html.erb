@@ -4,13 +4,15 @@
 
 <h3><%= @drink.drink_name %></h3><br>
 
-<img src="<%= @drink.drink_thumb %>" alt="drink image" width="50%">
+<img src="<%= @drink.drink_thumb %>" alt="drink image" width="50%"><br>
+
+<p><%= @drink.recipe %>
 
 <br><br>
 
-<%= button_to "Delete Drink", @drink, method: :delete, data: { confirm: "Do you really want to delete this item?" }, class: "btn btn-sm btn-info" %>
+<button type="button", class="btn btn-info btn-sm"><%= link_to "Edit Drink", edit_drink_path(@drink), class: 'btn btn-info btn-sm' %></button>
+<button type="button", class="btn btn-info btn-sm"><%= button_to "Delete Drink", @drink, method: :delete, data: { confirm: "Do you really want to delete this item?" }, class: 'btn btn-info btn-sm' %></button>
 
 <br><br>
 
 </div>
-

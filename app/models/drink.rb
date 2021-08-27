@@ -4,7 +4,7 @@ class Drink < ApplicationRecord
     
     before_validation :make_title_case
     validates :drink_name, presence: true, uniqueness: true
-    validates :drink_thumb, presence: true
+    validates_presence_of :drink_thumb, :recipe
     validate :is_title_case
     
     scope :drink_search, ->(name) { where("drink_name LIKE ?", "%#{name.titlecase}%") }

@@ -19,9 +19,9 @@
 <%else%>
   <h3>All Ingredients</h3>
 
-    <%= form_tag items_path, method: :get do %>
-        <%= text_field_tag :name %>
-        <%= submit_tag "Search Ingredient" %>
+    <%= form_with url: items_path, method: :get do |f| %>
+        <%= f.text_field :name %>
+        <%= f.submit "Search Ingredient" %>
     <%end%>
     
   <%= render partial: 'items', locals: {items: @items} %>  

@@ -43,6 +43,7 @@ rm_1_array.each do |drink|
     Drink.create(
     drink_name: drink["strDrink"],
     drink_thumb: drink["strDrinkThumb"],
+    recipe: "This is a recipe.",
     item_id: 1,
     user_id: 1
     )
@@ -56,6 +57,7 @@ rm_2_array.each do |drink|
     Drink.create(
     drink_name: drink["strDrink"],
     drink_thumb: drink["strDrinkThumb"],
+    recipe: "This is a recipe.",
     item_id: 2, 
     user_id: 1 
     )
@@ -69,6 +71,7 @@ rm_3_array.each do |drink|
     Drink.create(
     drink_name: drink["strDrink"],
     drink_thumb: drink["strDrinkThumb"],
+    recipe: "This is a recipe.",
     item_id: 3,
     user_id: 1
     )
@@ -82,6 +85,7 @@ rm_4_array.each do |drink|
     Drink.create(
     drink_name: drink["strDrink"],
     drink_thumb: drink["strDrinkThumb"],
+    recipe: "This is a recipe.",
     item_id: 4,
     user_id: 1
     )

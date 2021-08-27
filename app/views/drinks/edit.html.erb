@@ -1,0 +1,33 @@
+<div class="container">
+
+<%= render partial: 'application/errors', locals: { errors: @drink.errors.full_messages } %> 
+
+<p class="flash"><%= flash[:message] %></p>
+
+<h3>Edit <%= @drink.drink_name %></h3>
+ 
+<div class="form">
+
+  <%= form_for @drink do |f| %>
+
+   <%= f.label "Name:" %><br>
+   <%= f.text_field :drink_name %>
+   <br><br> 
+
+   <%= f.label "Submit an image url: " %><br>
+   <%= f.text_field :drink_thumb %>
+   <br><br>
+
+   <%= f.label "Recipe: " %><br>
+   <%= f.text_area :recipe, cols: 30, rows: 10 %>
+   <br><br>
+
+   <%= f.label "Select a main ingredient:" %>
+   <%= f.collection_select :item_id, Item.all, :id, :name, prompt: true %>
+
+   <br><br>
+   <%= f.submit %>
+   <%end%>
+</div>
+
+</div>
