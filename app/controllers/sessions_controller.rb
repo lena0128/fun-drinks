@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
             flash[:message] = "You are successfully logged in!"
-            redirect_to user_path(@user)
+            redirect_to user_items_path(@user)
         elsif @user
             @errors = ["Invalid password"]
             render :new
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
         if @user.valid?
             session[:user_id] = @user.id
             flash[:message] = "You are successfully logged in!"
-            redirect_to user_path(@user)
+            redirect_to user_items_path(@user)
         else
             redirect_to home_path
         end

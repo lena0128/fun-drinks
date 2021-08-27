@@ -1,5 +1,7 @@
 class DrinksController < ApplicationController
-    before_action :set_drink, only: [:show, :destroy]
+    before_action :set_drink, only: [:show, :edit, :update, :destroy]
+    before_action :require_login
+    before_action :require_creator, only: [:destroy]
 
     def index
         if params[:name]
@@ -30,12 +32,25 @@ class DrinksController < ApplicationController
         if params[:item_id]
             @drink.item_id = params[:item_id]
         end
-            @drink.save
+            if @drink.save
+            flash[:message] = "Your drink has been successfully created!"
             redirect_to drinks_path
+        else
+            @items = Item.all
+            render :new
+        end
+    end
+
+    def edit
+    end
+
+    def update
+            
     end
 
     def destroy
         @drink.delete
+        flash[:message] = "You are successfully delete the drink!"
         redirect_to drinks_path
     end
 
@@ -46,6 +61,13 @@ class DrinksController < ApplicationController
 
     def set_drink
         @drink = Drink.find_by(id: params[:id])
+    end
+
+    def require_creator
+        if current_user.id != @drink.user_id
+            flash[:message] = "You are not allowed to do this!"
+            redirect_to drinks_path
+        end
     end
 
 end

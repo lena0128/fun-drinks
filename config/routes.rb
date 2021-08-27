@@ -4,11 +4,11 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
   end
 
-  resources :items do
+  resources :items, except: [:destroy] do
     resources :drinks, only: [:new, :create]
   end
 
-  resources :drinks, except: [:edit, :update]
+  resources :drinks
 
   get '/signup', to: 'users#new', as: 'signup'
   post '/signup', to: 'users#create'

@@ -1,12 +1,14 @@
 <div class="container" id="drink_page">
 
+<p class="flash"><%= flash[:message] %></p>
+
 <h3><%= @drink.drink_name %></h3><br>
 
 <img src="<%= @drink.drink_thumb %>" alt="drink image" width="50%">
 
 <br><br>
 
-<%= button_to "Delete Drink", @drink, method: :delete, data: { confirm: "Do you really want to delete this item?" } %>
+<%= button_to "Delete Drink", @drink, method: :delete, data: { confirm: "Do you really want to delete this item?" }, class: "btn btn-sm btn-info" %>
 
 <br><br>
 

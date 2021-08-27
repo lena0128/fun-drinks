@@ -44,7 +44,7 @@ rm_1_array.each do |drink|
     drink_name: drink["strDrink"],
     drink_thumb: drink["strDrinkThumb"],
     item_id: 1,
-    user_id: 2
+    user_id: 1
     )
 end
 
@@ -70,7 +70,7 @@ rm_3_array.each do |drink|
     drink_name: drink["strDrink"],
     drink_thumb: drink["strDrinkThumb"],
     item_id: 3,
-    user_id: 3
+    user_id: 1
     )
 end
 

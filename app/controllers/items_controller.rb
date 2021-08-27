@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
     before_action :set_item, only: [:show, :edit, :update, :destroy]
-    before_action :require_login, except: [:index, :show]
+    before_action :require_login
 
     def index
         if params[:user_id]
            @user = User.find_by(id: params[:user_id])
-           @items = @user.items.uniq
+           @items = @user.items
         elsif params[:name]
             @items = Item.item_search(params[:name])
         else
@@ -15,7 +15,8 @@ class ItemsController < ApplicationController
 
     def new
         @item = Item.new
-        @item.drinks.build
+        @item.drinks.build(user: current_user)
+        @drinks = @item.drinks.select { |d| d.user_id == current_user.id }
     end
     
     def show
@@ -24,7 +25,9 @@ class ItemsController < ApplicationController
     
     def create
         @item = Item.new(item_params)
+        @item.drinks.each { |d| d.user = current_user }
         if @item.save
+          flash[:message] = "New drink has been successfully created!"
           redirect_to item_path(@item)
         else
           render :new
@@ -35,16 +38,12 @@ class ItemsController < ApplicationController
     end
 
     def update
-        if @item.update(item_params)
-            redirect_to item_path(@item)
-        else
-            render :edit
-        end
-    end
-
-    def destroy
-        @item.delete
-        redirect_to items_path
+      if @item.update(item_params)
+        redirect_to item_path(@item)
+      else
+        @drinks = @item.drinks.select { |d|d.user_id == current_user.id }
+        render :edit
+      end
     end
 
     private
@@ -55,7 +54,7 @@ class ItemsController < ApplicationController
               :image_url,
               :description,
               :alcohol, 
-              drinks_attributes: [:drink_name, :drink_thumb]
+              drinks_attributes: [:drink_name, :drink_thumb, :user_id, :id]
           )
       end
 

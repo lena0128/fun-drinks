@@ -1,18 +1,22 @@
 <div class="container">
 
+<p class="flash"><%= flash[:message] %></p>
+  
+  <%= link_to "Add Drink with Ingredient", new_item_drink_path(@item), class: "btn-sm btn-info" %>
+  <%= link_to "Edit Ingredient", edit_item_path(@item), class: "btn-sm btn-info" %>
+
   <h3><%= @item.name %></h3><br>
+
   <img src="<%= @item.image_url %>" alt="item image" width="30%">
-  <h4>Alcohol: <%= @item.alcohol %></h4>
+  
+  <h5>Alcohol: <%= @item.alcohol %></h5>
   
   <br><br>
   
   <p><%= @item.description %></p>
   
   <br><br>
-  
-  <button><%= link_to "Edit Item", edit_item_path(@item) %></button>
-  <%= button_to "Delete Item", @item, method: :delete, data: { confirm: "Do you really want to delete this item?" } %>
-  <%= link_to "Add Drink with Ingredient", new_item_drink_path(@item) %>
+   
   <br><br>
 
 <%= render partial: "drinks/drinks", locals: {drinks: @item.drinks} %>

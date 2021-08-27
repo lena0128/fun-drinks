@@ -1,17 +1,31 @@
 <div class="container">
 
-<%= flash[:message] %>
+<p class="flash"><%= flash[:message] %></p>
 
-<h3>All Ingredients</h3>
+<% if @user %>
+  <h3>My Ingredients & Drinks</h3>
+  <div>
+   <% @user.drinks.each do |d| %>
+    <% if d.user_id == current_user.id %>
+    <li class="list-group-item list-group-item-info">
+    <img src="<%= d.drink_thumb %>" class="rounded float-right" width="50px" style="float:right">
+     <b class="badge badge-pill badge-info">Ingredient</b> - <%= link_to d.item.name, item_path(d.item) %><br>
+     <b class="badge badge-pill badge-info">Drink</b> - <%= link_to d.drink_name, drink_path(d) %>
+    </li><br>
+    <%end%> 
+   <%end%>
+  </div>  
 
-<%= form_tag items_path, method: :get do %>
-    <%= text_field_tag :name %>
-    <%= submit_tag "Search Ingredient" %>
-<%end%> 
+<%else%>
+  <h3>All Ingredients</h3>
 
-<br>
+    <%= form_tag items_path, method: :get do %>
+        <%= text_field_tag :name %>
+        <%= submit_tag "Search Ingredient" %>
+    <%end%>
+    
+  <%= render partial: 'items', locals: {items: @items} %>  
 
-<%= render partial: 'items', locals: {items: @items} %>
-
+<% end %>
 
 </div>
