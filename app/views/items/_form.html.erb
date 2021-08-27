@@ -1,6 +1,6 @@
 <div class="form">
 
-<%= form_for @item do |f| %>
+<%= form_with(model: @item) do |f| %>
 
    <%= f.label "Name:" %><br>
    <%= f.text_field :name %>
