@@ -5,10 +5,12 @@ The third-party provider registrations was created with Omniauth, CSS styling wi
 
 # Installation
 Clone this repo to your local computer
+
 Run `bundle install` in your terminal
 
 # Usage
 Run `rails s` to start the server
+
 Open your browser to localhost
 
 # Contributing
