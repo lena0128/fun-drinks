@@ -3,13 +3,13 @@
 <p class="flash"><%= flash[:message] %></p>
 
 <h3><%= @drink.drink_name %></h3><br>
-<p><i>created by user: <%= @drink.user.username %></p>
-<p><i>Last updated on: <%= @drink.updated_at.strftime("%B %d, %Y") %></p>
+<small><i>created by user: <%= @drink.user.username %></small><br />
+<small><i>Last updated on: <%= @drink.updated_at.strftime("%B %d, %Y") %></small>
 
 
-<img src="<%= @drink.drink_thumb %>" alt="drink image" width="50%"><br>
+<img src="<%= @drink.drink_thumb %>" alt="drink image" width="50%"><br />
 
-<p><%= @drink.recipe %>
+<p><%= @drink.recipe %></p>
 
 <br><br>
 <% if current_user == @drink.user %>
