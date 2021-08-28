@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
   end
 
-  resources :items, except: [:destroy] do
+  resources :items, except: [:edit, :update, :destroy] do
     resources :drinks, only: [:new, :create]
   end
 

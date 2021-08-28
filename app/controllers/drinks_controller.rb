@@ -35,7 +35,7 @@ class DrinksController < ApplicationController
         end
             if @drink.save
             flash[:message] = "Your drink has been successfully created!"
-            redirect_to drinks_path
+            redirect_to drink_path(@drink)
         else
             @items = Item.all
             render :new
@@ -56,7 +56,7 @@ class DrinksController < ApplicationController
 
     def destroy
         @drink.delete
-        flash[:message] = "You are successfully delete the drink!"
+        flash[:message] = "You have successfully deleted the drink!"
         redirect_to drinks_path
     end
 

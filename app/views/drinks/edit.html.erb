@@ -10,22 +10,15 @@
 
   <%= form_for @drink do |f| %>
 
-   <%= f.label "Name:" %><br>
+   <%= f.label "Name:" %><br />
    <%= f.text_field :drink_name %>
-   <br><br> 
-
-   <%= f.label "Submit an image url: " %><br>
+   <br /><br />
+   <%= f.label "Submit an image url: " %><br />
    <%= f.text_field :drink_thumb %>
-   <br><br>
-
-   <%= f.label "Recipe: " %><br>
+   <br /><br />
+   <%= f.label "Recipe: " %><br />
    <%= f.text_area :recipe, cols: 30, rows: 10 %>
-   <br><br>
-
-   <%= f.label "Select a main ingredient:" %>
-   <%= f.collection_select :item_id, Item.all, :id, :name, prompt: true %>
-
-   <br><br>
+   <br /><br />
    <%= f.submit %>
    <%end%>
 </div>

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-    before_action :set_item, only: [:show, :edit, :update]
+    before_action :set_item, only: [:show]
     before_action :require_login
 
     def index
@@ -21,16 +21,12 @@ class ItemsController < ApplicationController
     
     def show
     end
-
-    def edit
-      @drinks = @item.drinks.select { |d|d.user_id == current_user.id }
-    end
     
     def create
         @item = Item.new(item_params)
         @item.drinks.each { |d|d.user_id = current_user.id }
         if @item.save
-          flash[:message] = "New drink has been successfully created!"
+          flash[:message] = "New Item with a drink has been successfully created!"
           redirect_to item_path(@item)
         else
           @item.drinks.select { |d| d.user_id = current_user.id }
@@ -38,15 +34,21 @@ class ItemsController < ApplicationController
         end
     end
 
+    # since users share items, I don't want that if someone changes tha iten name to something else.
+    # so I disabled `items#edit/update/destroy` 
 
-    def update
-      if @item.update(item_params)
-        redirect_to item_path(@item)
-      else
-        @drinks = @item.drinks.select { |d|d.user_id == current_user.id }
-        render :edit
-      end
-    end
+    #def edit
+    #  @drinks = @item.drinks.select { |d|d.user_id == current_user.id }
+    #end
+
+    #def update
+    #  if @item.update(item_params)
+    #    redirect_to item_path(@item)
+    #  else
+    #    @drinks = @item.drinks.select { |d|d.user_id == current_user.id }
+    #    render :edit
+    #  end
+    #end
 
 private
 

@@ -33,6 +33,25 @@ Item.create([
     image_url: "https://www.thecocktaildb.com/images/ingredients/Tequila.png",
     description: "Tequila (Spanish pronunciation: [teˈkila] (About this sound listen)) is a regionally specific distilled beverage and type of alcoholic drink made from the blue agave plant, primarily in the area surrounding the city of Tequila, 65 km (40 mi) northwest of Guadalajara, and in the highlands (Los Altos) of the central western Mexican state of Jalisco. Aside from differences in region of origin, tequila is a type of mezcal (and the regions of production of the two drinks are overlapping). The distinction in the method of production is that tequila must use only blue agave plants rather than any type of agave. Tequila is commonly served neat in Mexico and as a shot with salt and lime across the rest of the world. The red volcanic soil in the region around the city of Tequila is particularly well suited to the growing of the blue agave, and more than 300 million of the plants are harvested there each year. Agave grows differently depending on the region. Blue agaves grown in the highlands Los Altos region are larger in size and sweeter in aroma and taste. Agaves harvested in the lowlands, on the other hand, have a more herbaceous fragrance and flavor. Mexican laws state that tequila can only be produced in the state of Jalisco and limited municipalities in the states of Guanajuato, Michoacán, Nayarit, and Tamaulipas. Tequila is recognized as a Mexican designation of origin product in more than 40 countries. It is protected through NAFTA in Canada and the United States,[6] through bilateral agreements with individual countries such as Japan and Israel, and has been a protected designation of origin product in the constituent countries of the European Union since 1997. Tequila contains alcohol (also known formally as ethanol) and is most often made at a 38% alcohol content (76 U.S. proof) for domestic consumption, but can be produced between 31 and 55% alcohol content (62 and 110 U.S. proof). Per U.S law, tequila must contain at least 40% alcohol (80 U.S. proof) to be sold in the United States.",
     alcohol: "yes"
+},
+    {
+    name: "Coffee",
+    image_url: "https://www.thecocktaildb.com/images/ingredients/Coffee.png",
+    description: "Coffee is a brewed drink prepared from roasted coffee beans, which are the seeds of berries from the Coffea plant. The genus Coffea is native to tropical Africa (specifically having its origin in Ethiopia and Sudan) and Madagascar, the Comoros, Mauritius, and Réunion in the Indian Ocean. ",
+    alcohol: "no"
+},
+    {
+    name: "Milk",
+    image_url: "https://www.thecocktaildb.com/images/ingredients/Milk.png",
+    description: "Milk is a white liquid produced by the mammary glands of mammals. It is the primary source of nutrition for infant mammals (including humans who breastfeed) before they are able to digest other types of food. Early-lactation milk contains colostrum, which carries the mother's antibodies to its young and can reduce the risk of many diseases. It contains many other nutrients including protein and lactose. ",
+    alcohol: "no"
+
+},
+    {
+    name: "Coke",
+    image_url: "https://www.thecocktaildb.com/images/ingredients/Coca-Cola.png",
+    description: "Coca-Cola, or Coke, is a carbonated soft drink produced by The Coca-Cola Company. Originally intended as a patent medicine, it was invented in the late 19th century by John Pemberton and was bought out by businessman Asa Griggs Candler, whose marketing tactics led Coca-Cola to its dominance of the world soft-drink market throughout the 20th century. ",
+    alcohol: "no"
 }
 ])
 
@@ -88,5 +107,18 @@ rm_4_array.each do |drink|
     recipe: "This is a recipe.",
     item_id: 4,
     user_id: 1
+    )
+end
+
+rm_5 = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=milk"
+rm_5_array = JSON.parse(rm_5)["drinks"]
+
+rm_5_array.each do |drink|
+    Drink.create(
+    drink_name: drink["strDrink"],
+    drink_thumb: drink["strDrinkThumb"],
+    recipe: "This is a recipe.",
+    item_id: 6,
+    user_id: 2
     )
 end

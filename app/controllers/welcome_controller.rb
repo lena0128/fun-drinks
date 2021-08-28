@@ -7,6 +7,4 @@ class WelcomeController < ApplicationController
         @non_alc_items = Item.filter_non_alcohol
     end
     
-    
-
 end
