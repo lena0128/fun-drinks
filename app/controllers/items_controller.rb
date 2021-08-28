@@ -8,8 +8,17 @@ class ItemsController < ApplicationController
            @items = @user.items
         elsif params[:name]
             @items = Item.item_search(params[:name])
-          else
-            @items = Item.all
+        elsif params[:filter]
+          case params[:filter]
+            when 'Alcohol'
+              @items = Item.alcohol
+            when 'Non-Alcohol'
+              @items = Item.non_alcohol
+            when 'View All'
+              @items = Item.all
+          end
+        else
+          @items = Item.all  
         end
     end
 

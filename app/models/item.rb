@@ -11,8 +11,8 @@ class Item < ApplicationRecord
     validate :is_title_case
 
     scope :item_search, ->(name) { where("name LIKE ?", "%#{name.titlecase}%") } 
-    scope :filter_alcohol, -> { where(alcohol: "yes").last(3) } 
-    scope :filter_non_alcohol, -> { where(alcohol: "no").last(3) }
+    #scope :filter_alcohol, -> { where(alcohol: "yes").last(3) } 
+    #scope :filter_non_alcohol, -> { where(alcohol: "no").last(3) }
 
     def set_defalut_image_url
         if self.image_url == nil || self.image_url == ""
@@ -42,4 +42,13 @@ class Item < ApplicationRecord
     def make_title_case
         self.name = name.titlecase
     end
+
+    def self.alcohol
+        where(alcohol: "yes")
+    end
+
+    def self.non_alcohol
+        where(alcohol: "no")
+    end
+
 end

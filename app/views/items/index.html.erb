@@ -17,13 +17,20 @@
   </div>  
      
 <%else%>
-  <h3>All Ingredients</h3>
+  <h3>View Ingredients</h3>
 
     <%= form_with url: items_path, method: :get do |f| %>
+        <%= f.label "Search Ingredient" %> 
         <%= f.text_field :name %>
-        <%= f.submit "Search Ingredient" %>
+        <%= f.submit "Search" %>
     <%end%>
-  
+    <br />
+    <%= form_tag(items_path, method: :get) do %>
+      <%= label_tag "Filter Ingredients" %>
+      <%= select_tag :filter, options_for_select([ ['Alcohol'], ['Non-Alcohol'], ['View All'] ]), prompt: "Please select" %>
+        <input type="submit" value="Filter"><br>
+      <% end %>
+
   <%= render partial: 'items', locals: {items: @items} %>
 
 <% end %>
