@@ -8,6 +8,10 @@ Clone this repo to your local computer
 
 Run `bundle install` in your terminal
 
+Run `rails db:create RAILS_ENV=test`
+
+Run `rails db:seed`
+
 # Usage
 Run `rails s` to start the server
 
