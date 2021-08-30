@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
             flash[:message] = "You are successfully logged in!"
             redirect_to user_items_path(@user)
         else
-            redirect_to home_path
+            redirect_to login_path
         end
     end
 

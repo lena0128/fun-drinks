@@ -1,5 +1,5 @@
 # Fun Drinks Rails App
-Welcome to Fun Drinks APP! This app is built with Ruby on Rails framework. The app is a web application for drink lovers to find and add ingredients and recipes from cocktails to milkshakes. Users can also view drink recipes created with specific ingredients and share their drink recipes with others. Users can search for any ingredient or drink by name. Furthermore, they can browse the latest drinks, drinks, and ingredients filtered by alcohol/alcohol-free on the homepage.
+Welcome to the Fun Drinks APP! This app is a web application for drink lovers to find and add ingredients and recipes from cocktails to milkshakes. Users can also view drink recipes created with specific ingredients and share their drink recipes with others. Users can search for any ingredient or drink by name. Furthermore, they can browse the latest alcoholic / non-alcoholic drinks, and filter ingredients by alcohol / non-alcohol on the page.
 
 The third-party provider registrations was created with Omniauth, CSS styling with Bootstrap, and data from https://www.thecocktaildb.com/api.php.
 
